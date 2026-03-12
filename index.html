@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mentalité Focus — Système Complet</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --gold:#C9A227;--gold2:#A67C00;--gold3:#F0D060;--gold4:#D4AF37;
+  --black:#0a0a0a;--white:#fff;
+  --grey:#F5F5F5;--mid:#888;--line:#E8E8E8;
+  --red:#FF3B30;--green:#22c55e;
+}
+body{font-family:'Inter',sans-serif;background:#fff;color:#0a0a0a;line-height:1.4;}
+.page{max-width:1020px;margin:0 auto;padding:64px 40px 120px;}
+
+/* NAV */
+nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:80px;padding-bottom:24px;border-bottom:2px solid var(--line);}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand-logo{width:36px;height:36px;background:linear-gradient(135deg,var(--gold2),var(--gold3));border-radius:8px;display:flex;align-items:center;justify-content:center;}
+.brand-logo svg{width:20px;height:20px;fill:#000;}
+.brand-text{font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;letter-spacing:2px;text-transform:uppercase;}
+.brand-text span{color:var(--gold);}
+.nav-tag{font-size:11px;font-weight:700;color:var(--mid);letter-spacing:2px;text-transform:uppercase;background:var(--grey);padding:6px 14px;border-radius:100px;}
+
+/* HERO */
+.hero{margin-bottom:80px;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#000;font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:24px;font-family:'Oswald',sans-serif;}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#000;animation:lp 1s ease-in-out infinite;}
+@keyframes lp{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-family:'Oswald',sans-serif;font-size:72px;font-weight:900;letter-spacing:-1px;line-height:.95;text-transform:uppercase;margin-bottom:20px;}
+.hero h1 .g{color:var(--mid);}
+.hero-sub{font-size:17px;color:var(--mid);max-width:600px;line-height:1.6;}
+
+/* PART SEPARATOR */
+.part-sep{display:flex;align-items:center;gap:0;margin:80px 0 64px;border-top:3px solid var(--black);}
+.part-label{font-family:'Oswald',sans-serif;font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;background:var(--black);color:#fff;padding:8px 20px;margin-top:-1px;}
+.part-title{font-family:'Oswald',sans-serif;font-size:32px;font-weight:900;text-transform:uppercase;margin-top:16px;}
+.part-title span{color:var(--gold);}
+.part-desc{font-size:14px;color:var(--mid);margin-top:8px;max-width:520px;line-height:1.6;}
+
+/* DIVIDER */
+.dvd{display:flex;align-items:center;gap:16px;margin-bottom:32px;}
+.dvd-label{font-family:'Oswald',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--mid);white-space:nowrap;}
+.dvd-line{flex:1;height:1px;background:var(--line);}
+
+.sec{margin-bottom:80px;}
+.sec-head{margin-bottom:28px;}
+.sec-head h2{font-family:'Oswald',sans-serif;font-size:40px;font-weight:900;letter-spacing:-.5px;text-transform:uppercase;line-height:1.05;}
+.sec-head h2 span{color:var(--gold);}
+.sec-head p{font-size:14px;color:var(--mid);margin-top:8px;line-height:1.6;max-width:520px;}
+
+.caption{font-size:12px;color:var(--mid);text-align:center;margin-top:12px;font-style:italic;}
+
+/* ══════════ DISCORD MOCKUP ══════════ */
+.dc{background:#36393f;border-radius:16px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.2);}
+.dc-bar{background:#2f3136;padding:10px 16px;display:flex;align-items:center;gap:8px;}
+.dc-dots{display:flex;gap:6px;}
+.dd{width:12px;height:12px;border-radius:50%;}
+.dd.r{background:#FF5F57;}.dd.y{background:#FEBC2E;}.dd.g{background:#28C840;}
+.dc-bar-title{font-size:12px;color:#72767d;margin-left:6px;}
+.dc-body{display:grid;grid-template-columns:210px 1fr;}
+.dc-sb{background:#2f3136;display:flex;flex-direction:column;}
+.dc-srv{padding:14px 16px;border-bottom:1px solid rgba(0,0,0,.2);font-family:'Oswald',sans-serif;font-size:14px;font-weight:700;color:#fff;letter-spacing:.5px;display:flex;align-items:center;justify-content:space-between;}
+.dc-cat{padding:14px 8px 4px 8px;font-size:10px;font-weight:700;letter-spacing:1.5px;color:#72767d;text-transform:uppercase;}
+.dc-ch{display:flex;align-items:center;gap:6px;padding:6px 8px;margin:1px 8px;border-radius:4px;font-size:13px;color:#8e9297;cursor:pointer;}
+.dc-ch.on{background:rgba(255,255,255,.1);color:#fff;}
+.dc-ch.lock{opacity:.45;}
+.dc-ch .hash{font-size:16px;font-weight:700;margin-right:2px;color:#72767d;}
+.dc-ch .ico{font-size:13px;margin-right:2px;}
+.dc-ch .badge{margin-left:auto;background:var(--red);color:#fff;border-radius:50%;width:16px;height:16px;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.dc-ch .reddot{margin-left:auto;width:8px;height:8px;border-radius:50%;background:var(--red);animation:lp 1s ease-in-out infinite;}
+.dc-main{background:#36393f;display:flex;flex-direction:column;}
+.dc-top{padding:11px 16px;border-bottom:1px solid rgba(0,0,0,.2);display:flex;align-items:center;gap:8px;}
+.dc-top-hash{font-size:18px;font-weight:700;color:#72767d;}
+.dc-top-name{font-size:15px;font-weight:700;color:#fff;}
+.dc-top-sep{width:1px;height:16px;background:rgba(255,255,255,.1);margin:0 4px;}
+.dc-top-desc{font-size:12px;color:#72767d;}
+.dc-msgs{padding:16px;display:flex;flex-direction:column;gap:16px;min-height:260px;}
+.dc-msg{display:flex;gap:12px;}
+.dc-av{width:36px;height:36px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#fff;}
+.dc-av.bot{background:#5865F2;}
+.dc-mc{flex:1;}
+.dc-mh{display:flex;align-items:baseline;gap:8px;margin-bottom:3px;}
+.dc-name{font-size:14px;font-weight:600;color:#fff;}
+.dc-name.blue{color:#5865F2;}
+.dc-botbadge{background:#5865F2;color:#fff;font-size:9px;font-weight:700;padding:1px 4px;border-radius:3px;}
+.dc-ts{font-size:11px;color:#72767d;}
+.dc-txt{font-size:13px;color:#dcddde;line-height:1.6;}
+.dc-embed{margin-top:4px;border-left:4px solid var(--red);background:#2f3136;border-radius:0 4px 4px 0;padding:12px 14px;max-width:440px;}
+.dc-embed.gold-e{border-left-color:var(--gold);}
+.dc-embed.grey-e{border-left-color:#4f545c;}
+.de-prov{font-size:11px;color:#72767d;font-weight:600;margin-bottom:5px;}
+.de-ttl{font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.de-reddot{width:8px;height:8px;border-radius:50%;background:var(--red);animation:lp 1s ease-in-out infinite;flex-shrink:0;}
+.de-desc{font-size:13px;color:#b9bbbe;line-height:1.65;margin-bottom:8px;}
+.de-desc strong{color:#fff;}
+.de-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px;}
+.de-fn{font-size:12px;font-weight:700;color:#fff;margin-bottom:2px;}
+.de-fv{font-size:12px;color:#b9bbbe;}
+.de-btn{display:inline-block;background:#5865F2;color:#fff;font-size:12px;font-weight:600;padding:7px 14px;border-radius:4px;margin-top:4px;}
+.de-btn.gold-btn{background:linear-gradient(135deg,var(--gold2),var(--gold4));color:#000;}
+.de-foot{font-size:11px;color:#72767d;border-top:1px solid rgba(255,255,255,.05);padding-top:8px;margin-top:8px;}
+.dc-inp{padding:10px 16px;border-top:1px solid rgba(0,0,0,.1);}
+.dc-inp-bar{background:#40444b;border-radius:8px;padding:9px 14px;font-size:13px;color:#72767d;}
+
+/* ══════════ PHONE (style clair) ══════════ */
+.phone{width:260px;background:#ffffff;border-radius:40px;padding:10px;box-shadow:0 28px 70px rgba(0,0,0,.12);border:2px solid #d0d0d0;}
+.phone-in{background:#f2f2f7;border-radius:32px;overflow:hidden;}
+.phone-notch{height:26px;background:#f2f2f7;display:flex;align-items:center;justify-content:center;}
+.phone-pill{width:80px;height:12px;background:#c7c7cc;border-radius:100px;}
+.phone-sc{padding:14px;}
+.ph-time{font-size:40px;font-weight:200;color:#0a0a0a;text-align:center;letter-spacing:-1px;margin-bottom:2px;}
+.ph-date{font-size:12px;color:rgba(0,0,0,.4);text-align:center;margin-bottom:18px;}
+.ios-n{background:#ffffff;border-radius:14px;padding:12px 14px;margin-bottom:8px;border:1px solid var(--line);box-shadow:0 2px 6px rgba(0,0,0,.06);}
+.ios-n-h{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
+.ios-ico{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.ios-ico.gold-ico{background:linear-gradient(135deg,var(--gold2),var(--gold3));}
+.ios-ico.blue-ico{background:#5865F2;}
+.ios-app{font-size:10px;font-weight:700;color:rgba(0,0,0,.4);flex:1;text-transform:uppercase;letter-spacing:.5px;}
+.ios-time{font-size:10px;color:rgba(0,0,0,.3);}
+.ios-title{font-size:13px;font-weight:700;color:#0a0a0a;margin-bottom:2px;}
+.ios-body{font-size:12px;color:rgba(0,0,0,.5);line-height:1.4;}
+
+/* ══════════ CARD MOCKUP (app) ══════════ */
+.cm{background:#fff;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.1);overflow:hidden;max-width:320px;border:2px solid #0a0a0a;}
+.cm-hd{background:#ffffff;padding:11px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #0a0a0a;}
+.cm-brand{font-family:'Oswald',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;color:var(--gold2);text-transform:uppercase;}
+.cm-pts{font-size:10px;background:#f0f0f0;color:#0a0a0a;padding:3px 10px;border-radius:100px;font-weight:700;border:1px solid #ddd;}
+.cm-player{aspect-ratio:16/9;position:relative;overflow:hidden;background:#f0f0f0;}
+.cm-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7),transparent 50%);display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:10px;}
+.cm-livebadge{display:inline-flex;align-items:center;gap:4px;background:var(--red);color:#fff;font-size:9px;font-weight:800;padding:3px 7px;border-radius:3px;letter-spacing:1px;margin-bottom:4px;}
+.cm-livebadge-dot{width:5px;height:5px;border-radius:50%;background:#fff;animation:lp 1s infinite;}
+.cm-ptitle{font-size:12px;font-weight:700;color:#fff;line-height:1.3;}
+.cm-cd{position:absolute;top:8px;right:8px;background:#ffffff;border-radius:7px;padding:4px 9px;display:flex;align-items:center;gap:4px;border:1px solid #e0e0e0;box-shadow:0 2px 6px rgba(0,0,0,.1);}
+.cm-cd-dot{width:5px;height:5px;border-radius:50%;background:var(--red);animation:lp 1s infinite;}
+.cm-cd-time{font-size:15px;font-weight:800;color:#0a0a0a;}
+.cm-pw{position:absolute;inset:0;background:#ffffff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:14px;text-align:center;}
+.cm-pw-ico{font-size:28px;}
+.cm-pw-ttl{font-family:'Oswald',sans-serif;font-size:16px;font-weight:700;color:#0a0a0a;text-transform:uppercase;}
+.cm-pw-sub{font-size:11px;color:rgba(0,0,0,.5);line-height:1.4;}
+.cm-pw-price{font-family:'Oswald',sans-serif;font-size:28px;font-weight:900;color:var(--gold2);}
+.cm-pw-btn{width:100%;background:linear-gradient(135deg,var(--gold2),var(--gold3));color:#000;border:none;border-radius:8px;padding:10px;font-size:12px;font-weight:800;font-family:'Oswald',sans-serif;letter-spacing:.5px;cursor:pointer;text-transform:uppercase;}
+.cm-nav{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid #eee;padding:7px 0 10px;background:#fff;}
+.cm-nb{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:7px;font-weight:700;color:#bbb;letter-spacing:.5px;text-transform:uppercase;}
+.cm-nb.on{color:var(--gold);}
+.cm-nb.live-on{color:var(--red);}
+.cm-nb svg{width:16px;height:16px;}
+.cm-nb-dot{width:5px;height:5px;border-radius:50%;background:var(--red);animation:lp 1s infinite;margin-top:-2px;}
+
+/* ══════════ WALLET CARD ══════════ */
+.wc{width:320px;border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.08);background:#fff;border:1px solid var(--line);position:relative;}
+.wc-header{padding:16px 18px 0;display:flex;justify-content:space-between;align-items:flex-start;}
+.wc-logo{display:flex;align-items:center;gap:8px;}
+.wc-logo-icon{width:28px;height:28px;background:linear-gradient(135deg,var(--gold2),var(--gold3));border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.wc-logo-icon svg{width:16px;height:16px;fill:#000;}
+.wc-logo-text{font-family:'Oswald',sans-serif;font-size:12px;font-weight:700;color:var(--gold2);letter-spacing:2px;text-transform:uppercase;}
+.wc-pts-badge{text-align:right;}
+.wc-pts-label{font-size:8px;font-weight:700;color:var(--mid);letter-spacing:1.5px;text-transform:uppercase;}
+.wc-pts-val{font-family:'Oswald',sans-serif;font-size:24px;font-weight:900;color:var(--gold2);}
+.wc-strip{height:80px;background:linear-gradient(135deg,var(--gold2),var(--gold3),var(--gold2));margin:12px 0 0;position:relative;overflow:hidden;}
+.wc-strip::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);animation:shimmer 3s infinite;}
+@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.wc-body{padding:14px 18px 16px;}
+.wc-name-label{font-size:8px;font-weight:700;color:var(--mid);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:2px;}
+.wc-name{font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;color:var(--black);}
+.wc-fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px;}
+.wc-f-label{font-size:7px;font-weight:700;color:var(--mid);letter-spacing:1px;text-transform:uppercase;}
+.wc-f-val{font-size:13px;font-weight:600;color:var(--gold2);margin-top:1px;}
+.wc-qr{display:flex;justify-content:center;padding:12px 18px 16px;}
+.wc-qr-box{width:80px;height:80px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;}
+.wc-qr-box svg{width:60px;height:60px;}
+.wc-site{text-align:center;font-size:9px;color:var(--mid);padding-bottom:14px;}
+.wc-back{width:320px;border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.08);background:#fff;border:1px solid var(--line);padding:20px 18px;}
+.wc-back-section{margin-bottom:14px;}
+.wc-back-label{font-size:8px;font-weight:700;color:var(--mid);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid var(--line);}
+.wc-back-val{font-size:12px;color:var(--black);line-height:1.6;}
+.wc-back-val a{color:var(--gold2);text-decoration:underline;}
+.wc-back-dots{font-size:14px;letter-spacing:2px;margin-top:4px;}
+
+/* ══════════ STEPS ══════════ */
+.steps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;}
+.step{text-align:center;padding:28px 20px;border-radius:16px;background:var(--grey);}
+.step-num{font-family:'Oswald',sans-serif;font-size:36px;font-weight:900;color:var(--gold);margin-bottom:8px;}
+.step-title{font-family:'Oswald',sans-serif;font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.step-desc{font-size:12px;color:var(--mid);line-height:1.5;}
+
+/* ══════════ PROGRESS BAR ══════════ */
+.prog-mock{background:#fff;border:1px solid var(--line);border-radius:16px;padding:32px;width:100%;}
+.prog-label{font-size:10px;font-weight:700;color:var(--mid);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;}
+.prog-bar{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.prog-dot{width:30px;height:30px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--line);}
+.prog-dot.filled{background:var(--gold);border-color:var(--gold);color:#000;font-weight:800;}
+.prog-info{font-size:13px;color:var(--mid);line-height:1.6;}
+.prog-info strong{color:var(--gold);}
+
+/* ══════════ BIG RESULT ══════════ */
+.big{background:#fff;border:2px solid var(--black);border-radius:20px;padding:56px 48px;display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr 1px 1fr;gap:32px;align-items:center;margin-bottom:80px;}
+.bi{text-align:center;}
+.bi-n{font-family:'Oswald',sans-serif;font-size:56px;font-weight:900;line-height:1;margin-bottom:8px;}
+.bi-n.r{color:var(--red);}.bi-n.g{color:var(--green);}.bi-n.w{color:var(--black);}.bi-n.go{color:var(--gold);}
+.bi-l{font-size:11px;color:var(--mid);line-height:1.5;}
+.bi-d{background:var(--line);width:1px;height:60px;}
+
+footer{display:flex;justify-content:space-between;align-items:center;padding-top:32px;border-top:2px solid var(--line);}
+footer p{font-size:13px;color:var(--mid);}
+.f-brand{font-family:'Oswald',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;color:var(--gold);}
+
+/* ══════════ RESPONSIVE ══════════ */
+@media(max-width:768px){
+  .page{padding:32px 16px 80px;}
+  nav{margin-bottom:40px;flex-direction:column;gap:12px;align-items:flex-start;}
+  .hero{margin-bottom:48px;}
+  .hero h1{font-size:36px;}
+  .hero-sub{font-size:14px;}
+  .sec{margin-bottom:48px;}
+  .sec-head h2{font-size:26px;}
+  .dc-body{grid-template-columns:1fr !important;}
+  .dc-sb{display:none !important;}
+  .dc-msgs{min-height:auto !important;}
+  .dc-embed{max-width:100%;}
+  .de-fields{grid-template-columns:1fr;}
+  [style*="grid-template-columns: 1fr 1fr 1fr"],[style*="grid-template-columns:1fr 1fr 1fr"]{display:flex !important;flex-direction:column !important;gap:32px !important;align-items:center !important;}
+  [style*="grid-template-columns:1fr 1fr"]{display:flex !important;flex-direction:column !important;gap:24px !important;align-items:center !important;}
+  .phone{width:240px;}
+  .steps{grid-template-columns:1fr !important;}
+  .wc,.wc-back{width:280px;}
+  .big{grid-template-columns:1fr !important;gap:24px !important;padding:32px 24px !important;}
+  .bi-d{display:none;}
+  .bi-n{font-size:40px;}
+  footer{flex-direction:column;gap:12px;text-align:center;}
+}
+@media(max-width:480px){
+  .hero h1{font-size:28px;}
+  .hero-eyebrow{font-size:9px;padding:5px 12px;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- NAV -->
+  <nav>
+    <div class="brand">
+      <div class="brand-logo">
+        <svg viewBox="0 0 24 24"><polygon points="12,2 22,20 2,20"/></svg>
+      </div>
+      <div class="brand-text">Mentalité <span>Focus</span></div>
+    </div>
+    <div class="nav-tag">Système Complet — Mars 2026</div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow"><div class="live-dot"></div>Live en cours — 87 membres connectés</div>
+    <h1>Discord vivant.<br><span class="g">Carte. Conversion.</span></h1>
+    <p class="hero-sub">Le système complet en images — ce que voit chaque membre gratuit sur Discord et sur son téléphone, et comment la Focus Card automatise la fidélité des membres payants.</p>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       PARTIE 1 — DISCORD VIVANT
+  ════════════════════════════════════════ -->
+  <div class="part-sep">
+    <div class="part-label">Partie 1</div>
+  </div>
+  <div class="part-title">Le Discord <span>Vivant</span></div>
+  <div class="part-desc" style="margin-bottom:64px;">Ce que les 1 174 membres gratuits voient à chaque live — en temps réel, sur Discord et sur leur téléphone.</div>
+
+  <!-- Écran 1 : #aperçu-live -->
+  <div class="sec">
+    <div class="dvd"><div class="dvd-label">Écran 1 — Canal #aperçu-live</div><div class="dvd-line"></div></div>
+    <div class="sec-head">
+      <h2>Le live démarre.<br><span>Tout le monde le voit.</span></h2>
+      <p>Ce message apparaît dans le canal public instantanément. 1 174 membres gratuits le reçoivent. Puis la coupure arrive 5 minutes après — automatiquement.</p>
+    </div>
+    <div class="dc">
+      <div class="dc-bar">
+        <div class="dc-dots"><div class="dd r"></div><div class="dd y"></div><div class="dd g"></div></div>
+        <div class="dc-bar-title">Mentalité Focus</div>
+      </div>
+      <div class="dc-body">
+        <div class="dc-sb">
+          <div class="dc-srv">MENTALITÉ FOCUS</div>
+          <div class="dc-cat">Publics — Tout le monde</div>
+          <div class="dc-ch on"><span class="hash">#</span>aperçu-live<div class="reddot"></div></div>
+          <div class="dc-ch"><span class="hash">#</span>résumé-membres<div class="badge">3</div></div>
+          <div class="dc-ch"><span class="hash">#</span>live-status</div>
+          <div class="dc-ch"><span class="hash">#</span>hall-of-fame</div>
+          <div class="dc-cat" style="padding-top:14px;">🔒 Membres — 9,90€/mois</div>
+          <div class="dc-ch lock"><span class="ico">🔒</span>live-complet</div>
+          <div class="dc-ch lock"><span class="ico">🔒</span>replays</div>
+          <div class="dc-ch lock"><span class="ico">🔒</span>communauté</div>
+          <div class="dc-ch lock"><span class="ico">🔒</span>ressources</div>
+        </div>
+        <div class="dc-main">
+          <div class="dc-top">
+            <div class="dc-top-hash">#</div>
+            <div class="dc-top-name">aperçu-live</div>
+            <div class="dc-top-sep"></div>
+            <div class="dc-top-desc">Aperçu gratuit des lives en cours</div>
+          </div>
+          <div class="dc-msgs">
+            <div class="dc-msg">
+              <div class="dc-av bot" style="font-size:18px;">⚡</div>
+              <div class="dc-mc">
+                <div class="dc-mh"><span class="dc-name blue">Focus Bot</span><span class="dc-botbadge">BOT</span><span class="dc-ts">Aujourd'hui à 21:07</span></div>
+                <div class="dc-embed">
+                  <div class="de-prov">Mentalité Focus</div>
+                  <div class="de-ttl"><div class="de-reddot"></div>Networking, Business & E-commerce — Live #47</div>
+                  <div class="de-desc"><strong>Le live vient de démarrer.</strong><br><br>✅ Aperçu gratuit : <strong>5 premières minutes</strong><br>🔒 Live complet → membres uniquement<br>👥 <strong>87 membres</strong> connectés en ce moment</div>
+                  <div class="de-fields">
+                    <div><div class="de-fn">Accès complet</div><div class="de-fv">Membres 🔒</div></div>
+                    <div><div class="de-fn">Durée aperçu</div><div class="de-fv">5 minutes ⏱</div></div>
+                  </div>
+                  <a class="de-btn gold-btn" href="#">🃏 Voir l'aperçu sur ma carte</a>
+                  <div class="de-foot">Après 5 min, le live continue pour les membres uniquement</div>
+                </div>
+              </div>
+            </div>
+            <div class="dc-msg">
+              <div class="dc-av bot" style="font-size:18px;">⚡</div>
+              <div class="dc-mc">
+                <div class="dc-mh"><span class="dc-name blue">Focus Bot</span><span class="dc-botbadge">BOT</span><span class="dc-ts">Aujourd'hui à 21:10</span></div>
+                <div class="dc-embed grey-e">
+                  <div class="de-ttl">⛔ Aperçu terminé — 5 minutes écoulées</div>
+                  <div class="de-desc"><strong>Le live continue pour les membres.</strong><br>Ne rate plus les prochains → rejoins l'abonnement.</div>
+                  <a class="de-btn gold-btn" href="#">🚀 Rejoindre Focus — 9,90€/mois</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dc-inp"><div class="dc-inp-bar">Message #aperçu-live</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Écran 2 : #résumé-membres -->
+  <div class="sec">
+    <div class="dvd"><div class="dvd-label">Écran 2 — Canal #résumé-membres</div><div class="dvd-line"></div></div>
+    <div class="sec-head">
+      <h2>Après le live.<br><span>Ils voient ce qu'ils ont raté.</span></h2>
+      <p>Les titres des points abordés — sans le contenu. Juste assez pour regretter de ne pas être membre.</p>
+    </div>
+    <div class="dc">
+      <div class="dc-bar">
+        <div class="dc-dots"><div class="dd r"></div><div class="dd y"></div><div class="dd g"></div></div>
+        <div class="dc-bar-title">Mentalité Focus</div>
+      </div>
+      <div class="dc-body">
+        <div class="dc-sb">
+          <div class="dc-srv">MENTALITÉ FOCUS</div>
+          <div class="dc-cat">Publics</div>
+          <div class="dc-ch"><span class="hash">#</span>aperçu-live</div>
+          <div class="dc-ch on"><span class="hash">#</span>résumé-membres</div>
+          <div class="dc-ch"><span class="hash">#</span>live-status</div>
+          <div class="dc-ch"><span class="hash">#</span>hall-of-fame</div>
+          <div class="dc-cat" style="padding-top:14px;">🔒 Membres</div>
+          <div class="dc-ch lock"><span class="ico">🔒</span>live-complet</div>
+          <div class="dc-ch lock"><span class="ico">🔒</span>replays</div>
+          <div class="dc-ch lock"><span class="ico">🔒</span>ressources</div>
+        </div>
+        <div class="dc-main">
+          <div class="dc-top">
+            <div class="dc-top-hash">#</div>
+            <div class="dc-top-name">résumé-membres</div>
+          </div>
+          <div class="dc-msgs">
+            <div class="dc-msg">
+              <div class="dc-av bot" style="font-size:18px;">⚡</div>
+              <div class="dc-mc">
+                <div class="dc-mh"><span class="dc-name blue">Focus Bot</span><span class="dc-botbadge">BOT</span><span class="dc-ts">Aujourd'hui à 23:14</span></div>
+                <div class="dc-embed gold-e">
+                  <div class="de-prov">Mentalité Focus</div>
+                  <div class="de-ttl">📋 Résumé — Live #47</div>
+                  <div class="de-desc"><strong>Points abordés ce soir :</strong><br><br>✅ Trouver un produit gagnant en 2026 — la méthode exacte<br>✅ Scaler une pub sans brûler son budget<br>✅ Fiche produit à 4%+ de conversion<br>✅ 3 membres ont partagé leurs résultats ce mois-ci<br><br><span style="color:#72767d;font-style:italic;">Résumé partiel — contenu complet en replay.</span></div>
+                  <a class="de-btn gold-btn" href="#">🎬 Accéder au replay complet</a>
+                  <div class="de-foot">🔒 Replay réservé aux membres</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dc-inp"><div class="dc-inp-bar">Message #résumé-membres</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Écran 3 : #live-status -->
+  <div class="sec">
+    <div class="dvd"><div class="dvd-label">Écran 3 — Canal #live-status</div><div class="dvd-line"></div></div>
+    <div class="sec-head">
+      <h2>Un message unique.<br><span>Zéro spam.</span></h2>
+      <p>Le bot édite le même message toutes les 5 minutes. Le compteur change en silence. Personne ne reçoit de ping.</p>
+    </div>
+    <div style="max-width:520px;">
+      <div class="dc">
+        <div class="dc-bar"><div class="dc-dots"><div class="dd r"></div><div class="dd y"></div><div class="dd g"></div></div></div>
+        <div class="dc-body" style="grid-template-columns:180px 1fr;">
+          <div class="dc-sb">
+            <div class="dc-cat">Publics</div>
+            <div class="dc-ch"><span class="hash">#</span>aperçu-live</div>
+            <div class="dc-ch"><span class="hash">#</span>résumé-membres</div>
+            <div class="dc-ch on"><span class="hash">#</span>live-status</div>
+          </div>
+          <div class="dc-main">
+            <div class="dc-msgs" style="min-height:80px;">
+              <div class="dc-msg">
+                <div class="dc-av bot" style="font-size:16px;">⚡</div>
+                <div class="dc-mc">
+                  <div class="dc-mh"><span class="dc-name blue">Focus Bot</span><span class="dc-botbadge">BOT</span><span class="dc-ts">modifié à 21:35</span></div>
+                  <div class="dc-txt">🔴 <strong style="color:#fff;">LIVE EN COURS</strong><br>👥 <strong style="color:#fff;">94 membres</strong> connectés<br><span style="color:#72767d;">Accès membres · <span style="color:#C9A227;">Rejoindre Focus</span></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="caption">Le bot édite ce message — jamais de nouveau post</div>
+    </div>
+  </div>
+
+  <!-- Écran 4 : Téléphone -->
+  <div class="sec">
+    <div class="dvd"><div class="dvd-label">Écran 4 — Téléphone</div><div class="dvd-line"></div></div>
+    <div class="sec-head">
+      <h2>Discord fermé.<br><span>Ils reçoivent quand même.</span></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;align-items:start;justify-items:center;">
+
+      <div style="display:flex;flex-direction:column;align-items:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--mid);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;font-family:'Oswald',sans-serif;">Live démarre</div>
+        <div class="phone">
+          <div class="phone-in">
+            <div class="phone-notch"><div class="phone-pill"></div></div>
+            <div class="phone-sc">
+              <div class="ph-time">21:07</div>
+              <div class="ph-date">Mercredi 12 mars</div>
+              <div class="ios-n">
+                <div class="ios-n-h"><div class="ios-ico gold-ico">🃏</div><div class="ios-app">Focus Card</div><div class="ios-time">maintenant</div></div>
+                <div class="ios-title">🔴 LIVE EN COURS #47</div>
+                <div class="ios-body">Networking, Business & E-commerce. Aperçu gratuit 5 min → ouvre ta carte.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="caption">Push notification instantanée</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--mid);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;font-family:'Oswald',sans-serif;">DM automatique J+7</div>
+        <div class="phone">
+          <div class="phone-in">
+            <div class="phone-notch"><div class="phone-pill"></div></div>
+            <div class="phone-sc">
+              <div class="ph-time">09:00</div>
+              <div class="ph-date">Mercredi 19 mars</div>
+              <div class="ios-n">
+                <div class="ios-n-h"><div class="ios-ico blue-ico">💬</div><div class="ios-app">Discord</div><div class="ios-time">maintenant</div></div>
+                <div class="ios-title">Tu as raté 7 jours de lives 🔥</div>
+                <div class="ios-body">Cette semaine les membres ont appris le scaling, les pubs, les méthodes... Tu as raté tout ça.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="caption">Message auto — sans rien faire</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--mid);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;font-family:'Oswald',sans-serif;">Offre flash J+14</div>
+        <div class="phone">
+          <div class="phone-in">
+            <div class="phone-notch"><div class="phone-pill"></div></div>
+            <div class="phone-sc">
+              <div class="ph-time">10:00</div>
+              <div class="ph-date">Mercredi 26 mars</div>
+              <div class="ios-n">
+                <div class="ios-n-h"><div class="ios-ico blue-ico">💬</div><div class="ios-app">Discord</div><div class="ios-time">maintenant</div></div>
+                <div class="ios-title">Offre 48h — 4,95€ le 1er mois</div>
+                <div class="ios-body">Premier mois à moitié prix. Valable jusqu'à demain minuit. Une seule fois.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="caption">Offre flash automatique</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Écran 5 : Carte app -->
+  <div class="sec">
+    <div class="dvd"><div class="dvd-label">Écran 5 — Carte téléphone</div><div class="dvd-line"></div></div>
+    <div class="sec-head">
+      <h2>Ils ouvrent la carte.<br><span>5 minutes. Puis coupure.</span></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;align-items:start;justify-items:center;">
+
+      <div style="display:flex;flex-direction:column;align-items:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--mid);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;font-family:'Oswald',sans-serif;">Pendant les 5 min</div>
+        <div class="cm">
+          <div class="cm-hd"><div class="cm-brand">Mentalité Focus</div><div class="cm-pts">⭐ 14 pts</div></div>
+          <div class="cm-player">
+            <div style="width:100%;height:100%;background:#f0f0f0;display:flex;align-items:center;justify-content:center;">
+              <div style="text-align:center;"><div style="font-size:28px;margin-bottom:6px;">📺</div><div style="font-size:11px;color:rgba(0,0,0,.4);">Stream en cours</div></div>
+            </div>
+            <div class="cm-overlay">
+              <div class="cm-livebadge"><div class="cm-livebadge-dot"></div>EN DIRECT</div>
+              <div class="cm-ptitle">Networking, Business & E-commerce</div>
+            </div>
+            <div class="cm-cd"><div class="cm-cd-dot"></div><div class="cm-cd-time">2:31</div></div>
+          </div>
+          <div class="cm-nav">
+            <div class="cm-nb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Carte</div>
+            <div class="cm-nb live-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3" fill="currentColor" stroke="none"/></svg>Live<div class="cm-nb-dot"></div></div>
+            <div class="cm-nb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/></svg>Offres</div>
+            <div class="cm-nb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>Concours</div>
+            <div class="cm-nb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Rewards</div>
+          </div>
+        </div>
+        <div class="caption">Stream visible — countdown en haut à droite</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--mid);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;font-family:'Oswald',sans-serif;">Coupure à 5:00</div>
+        <div class="cm">
+          <div class="cm-hd"><div class="cm-brand">Mentalité Focus</div><div class="cm-pts">⭐ 14 pts</div></div>
+          <div class="cm-player">
+            <div style="width:100%;height:100%;background:#f0f0f0;"></div>
+            <div class="cm-pw">
+              <div class="cm-pw-ico">🎯</div>
+              <div class="cm-pw-ttl">Le live continue...</div>
+              <div class="cm-pw-sub">5 minutes d'aperçu écoulées. Rejoins Focus pour accéder au live complet + replays.</div>
+              <div class="cm-pw-price">9,90€<span style="font-size:14px;font-weight:400;color:rgba(0,0,0,.35)">/mois</span></div>
+              <button class="cm-pw-btn">REJOINDRE FOCUS</button>
+            </div>
+          </div>
+          <div class="cm-nav">
+            <div class="cm-nb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Carte</div>
+            <div class="cm-nb live-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3" fill="currentColor" stroke="none"/></svg>Live</div>
+            <div class="cm-nb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/></svg>Offres</div>
+            <div class="cm-nb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>Concours</div>
+            <div class="cm-nb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Rewards</div>
+          </div>
+        </div>
+        <div class="caption">Accès coupé — écran d'abonnement</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--mid);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;font-family:'Oswald',sans-serif;">2ème tentative</div>
+        <div class="cm">
+          <div class="cm-hd"><div class="cm-brand">Mentalité Focus</div><div class="cm-pts">⭐ 14 pts</div></div>
+          <div class="cm-player">
+            <div style="width:100%;height:100%;background:#f0f0f0;"></div>
+            <div class="cm-pw">
+              <div class="cm-pw-ico">🔒</div>
+              <div class="cm-pw-ttl">Accès refusé</div>
+              <div class="cm-pw-sub">Aperçu déjà utilisé aujourd'hui. 1 aperçu gratuit par 24h — impossible à contourner.</div>
+              <div style="height:8px;"></div>
+              <button class="cm-pw-btn">REJOINDRE FOCUS — 9,90€/MOIS</button>
+            </div>
+          </div>
+          <div class="cm-nav">
+            <div class="cm-nb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Carte</div>
+            <div class="cm-nb live-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3" fill="currentColor" stroke="none"/></svg>Live</div>
+            <div class="cm-nb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/></svg>Offres</div>
+            <div class="cm-nb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>Concours</div>
+            <div class="cm-nb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Rewards</div>
+          </div>
+        </div>
+        <div class="caption">IP bloquée — même en incognito</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       PARTIE 2 — FOCUS CARD
+  ════════════════════════════════════════ -->
+  <div class="part-sep">
+    <div class="part-label">Partie 2</div>
+  </div>
+  <div class="part-title">La Focus <span>Card</span></div>
+  <div class="part-desc" style="margin-bottom:64px;">Chaque membre payant a sa carte de fidélité dans Apple Wallet. Points, niveaux, rewards — tout est automatique.</div>
+
+  <!-- Section 01 : La Carte -->
+  <div class="sec">
+    <div class="dvd"><div class="dvd-label">01 — La Carte</div><div class="dvd-line"></div></div>
+    <div class="sec-head">
+      <h2>Carte Apple Wallet.<br><span>Toujours accessible.</span></h2>
+      <p>La carte Focus s'ajoute directement dans Apple Wallet. Le membre l'a toujours sur lui — pas besoin d'ouvrir une app.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;justify-items:center;">
+
+      <div style="display:flex;flex-direction:column;align-items:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--mid);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;font-family:'Oswald',sans-serif;">Face avant</div>
+        <div class="wc">
+          <div class="wc-header">
+            <div class="wc-logo">
+              <div class="wc-logo-icon"><svg viewBox="0 0 24 24"><polygon points="12,2 22,20 2,20"/></svg></div>
+              <div class="wc-logo-text">Mentalité Focus</div>
+            </div>
+            <div class="wc-pts-badge">
+              <div class="wc-pts-label">Points</div>
+              <div class="wc-pts-val">14</div>
+            </div>
+          </div>
+          <div class="wc-strip"></div>
+          <div class="wc-body">
+            <div class="wc-name-label">Carte de</div>
+            <div class="wc-name">KARIM</div>
+            <div class="wc-fields">
+              <div><div class="wc-f-label">Niveau</div><div class="wc-f-val">ACTIF</div></div>
+              <div><div class="wc-f-label">Cycle</div><div class="wc-f-val">#2</div></div>
+              <div><div class="wc-f-label">Progression</div><div class="wc-f-val">4/10</div></div>
+            </div>
+          </div>
+          <div class="wc-qr">
+            <div class="wc-qr-box">
+              <svg viewBox="0 0 60 60"><rect x="0" y="0" width="20" height="20" fill="#000"/><rect x="4" y="4" width="12" height="12" fill="#fff"/><rect x="6" y="6" width="8" height="8" fill="#000"/><rect x="40" y="0" width="20" height="20" fill="#000"/><rect x="44" y="4" width="12" height="12" fill="#fff"/><rect x="46" y="6" width="8" height="8" fill="#000"/><rect x="0" y="40" width="20" height="20" fill="#000"/><rect x="4" y="44" width="12" height="12" fill="#fff"/><rect x="6" y="46" width="8" height="8" fill="#000"/><rect x="24" y="0" width="4" height="4" fill="#000"/><rect x="24" y="8" width="4" height="4" fill="#000"/><rect x="32" y="4" width="4" height="4" fill="#000"/><rect x="24" y="24" width="4" height="4" fill="#000"/><rect x="28" y="28" width="4" height="4" fill="#000"/><rect x="32" y="24" width="4" height="4" fill="#000"/><rect x="24" y="32" width="4" height="4" fill="#000"/><rect x="40" y="24" width="4" height="4" fill="#000"/><rect x="44" y="28" width="4" height="4" fill="#000"/><rect x="48" y="32" width="4" height="4" fill="#000"/><rect x="52" y="40" width="4" height="4" fill="#000"/><rect x="40" y="44" width="4" height="4" fill="#000"/><rect x="44" y="48" width="4" height="4" fill="#000"/><rect x="48" y="52" width="4" height="4" fill="#000"/></svg>
+            </div>
+          </div>
+          <div class="wc-site">groupe-focus-card.vercel.app</div>
+        </div>
+        <div class="caption">Carte dorée dans Apple Wallet</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--mid);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;font-family:'Oswald',sans-serif;">Face arrière</div>
+        <div class="wc-back">
+          <div class="wc-back-section">
+            <div class="wc-back-label">Mes statistiques</div>
+            <div class="wc-back-val">Points : 14<br>Cycle : #2<br>Progression : 4/10<br>Prochain reward : 6 lives</div>
+            <div class="wc-back-dots">&#9679;&#9679;&#9679;&#9679;&#9675;&#9675;&#9675;&#9675;&#9675;&#9675;</div>
+          </div>
+          <div class="wc-back-section">
+            <div class="wc-back-label">Ma carte en ligne</div>
+            <div class="wc-back-val"><a href="#">Ouvrir ma carte Focus</a></div>
+          </div>
+          <div class="wc-back-section">
+            <div class="wc-back-label">Discord</div>
+            <div class="wc-back-val"><a href="#">Rejoindre Focus (+2000 membres)</a></div>
+          </div>
+          <div class="wc-back-section">
+            <div class="wc-back-label">Abonnement</div>
+            <div class="wc-back-val">9,90€/mois — <a href="#">Rejoindre Mentalité Focus</a></div>
+          </div>
+          <div class="wc-back-section">
+            <div class="wc-back-label">Comment ça marche</div>
+            <div class="wc-back-val">1 live = 1 point<br>10 points = 1 cycle = 1 reward</div>
+          </div>
+        </div>
+        <div class="caption">Infos, liens et progression au dos</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Section 02 : Fonctionnement -->
+  <div class="sec">
+    <div class="dvd"><div class="dvd-label">02 — Fonctionnement</div><div class="dvd-line"></div></div>
+    <div class="sec-head">
+      <h2>Simple.<br><span>1 live = 1 point.</span></h2>
+      <p>Le système est automatique. Le membre participe aux lives, accumule des points, monte en niveau, débloque des rewards.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Participe</div>
+        <div class="step-desc">Chaque live regardé = 1 point gagné automatiquement sur la carte.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Accumule</div>
+        <div class="step-desc">10 points = 1 cycle terminé. Chaque cycle débloque un reward exclusif.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Monte</div>
+        <div class="step-desc">Plus tu participes, plus ton niveau augmente. De Membre à Elite.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 03 : Progression -->
+  <div class="sec">
+    <div class="dvd"><div class="dvd-label">03 — Progression</div><div class="dvd-line"></div></div>
+    <div class="sec-head">
+      <h2>Chaque live compte.<br><span>La barre avance.</span></h2>
+      <p>Le membre voit sa progression en temps réel. 10 points pour compléter un cycle et débloquer un reward.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+      <div class="prog-mock">
+        <div class="prog-label">Cycle en cours — #2</div>
+        <div class="prog-bar">
+          <div class="prog-dot filled">1</div><div class="prog-dot filled">2</div><div class="prog-dot filled">3</div><div class="prog-dot filled">4</div>
+          <div class="prog-dot">5</div><div class="prog-dot">6</div><div class="prog-dot">7</div><div class="prog-dot">8</div><div class="prog-dot">9</div><div class="prog-dot">10</div>
+        </div>
+        <div class="prog-info"><strong>4/10</strong> points ce cycle<br>Encore <strong>6 lives</strong> pour le prochain reward</div>
+      </div>
+      <div class="prog-mock">
+        <div class="prog-label">Cycle terminé — Reward débloqué</div>
+        <div class="prog-bar">
+          <div class="prog-dot filled">1</div><div class="prog-dot filled">2</div><div class="prog-dot filled">3</div><div class="prog-dot filled">4</div>
+          <div class="prog-dot filled">5</div><div class="prog-dot filled">6</div><div class="prog-dot filled">7</div><div class="prog-dot filled">8</div><div class="prog-dot filled">9</div>
+          <div class="prog-dot filled" style="background:var(--green);border-color:var(--green);">✓</div>
+        </div>
+        <div class="prog-info"><strong>10/10</strong> — Cycle complet<br>Reward débloqué. Nouveau cycle démarre.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 04 : Apple Wallet -->
+  <div class="sec">
+    <div class="dvd"><div class="dvd-label">04 — Apple Wallet</div><div class="dvd-line"></div></div>
+    <div class="sec-head">
+      <h2>Dans le Wallet.<br><span>Un tap. C'est tout.</span></h2>
+      <p>Le membre télécharge sa carte en un clic. Elle s'ajoute dans Apple Wallet avec ses infos, ses points et un QR code vers sa carte en ligne.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;justify-items:center;">
+
+      <div style="display:flex;flex-direction:column;align-items:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--mid);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;font-family:'Oswald',sans-serif;">Notification push</div>
+        <div class="phone">
+          <div class="phone-in">
+            <div class="phone-notch"><div class="phone-pill"></div></div>
+            <div class="phone-sc">
+              <div class="ph-time">14:32</div>
+              <div class="ph-date">Mercredi 12 mars</div>
+              <div class="ios-n">
+                <div class="ios-n-h"><div class="ios-ico gold-ico">🃏</div><div class="ios-app">Focus Card</div><div class="ios-time">maintenant</div></div>
+                <div class="ios-title">🔴 LIVE EN COURS — #47</div>
+                <div class="ios-body">Networking, Business & E-commerce. Ouvre ta carte pour regarder.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="caption">Notification push quand un live démarre</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--mid);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;font-family:'Oswald',sans-serif;">Carte dans Wallet</div>
+        <div class="phone">
+          <div class="phone-in">
+            <div class="phone-notch"><div class="phone-pill"></div></div>
+            <div class="phone-sc" style="padding:10px 8px;">
+              <div style="font-size:11px;font-weight:600;color:var(--mid);text-align:center;margin-bottom:8px;">Apple Wallet</div>
+              <div class="wc" style="width:100%;border-radius:10px;box-shadow:none;">
+                <div class="wc-header" style="padding:10px 12px 0;">
+                  <div class="wc-logo">
+                    <div class="wc-logo-icon" style="width:20px;height:20px;border-radius:4px;"><svg viewBox="0 0 24 24" style="width:12px;height:12px;"><polygon points="12,2 22,20 2,20"/></svg></div>
+                    <div class="wc-logo-text" style="font-size:9px;">Mentalité Focus</div>
+                  </div>
+                  <div class="wc-pts-badge"><div class="wc-pts-label" style="font-size:7px;">Points</div><div class="wc-pts-val" style="font-size:18px;">14</div></div>
+                </div>
+                <div class="wc-strip" style="height:50px;"></div>
+                <div class="wc-body" style="padding:8px 12px 10px;">
+                  <div class="wc-name-label">Carte de</div>
+                  <div class="wc-name" style="font-size:16px;">KARIM</div>
+                  <div class="wc-fields" style="margin-top:8px;">
+                    <div><div class="wc-f-label">Niveau</div><div class="wc-f-val" style="font-size:11px;">ACTIF</div></div>
+                    <div><div class="wc-f-label">Cycle</div><div class="wc-f-val" style="font-size:11px;">#2</div></div>
+                    <div><div class="wc-f-label">Progression</div><div class="wc-f-val" style="font-size:11px;">4/10</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="caption">Toujours là — dans le Wallet natif</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RÉSULTAT GLOBAL -->
+  <div class="big">
+    <div class="bi"><div class="bi-n r">1 174</div><div class="bi-l">membres gratuits<br>exposés à chaque live</div></div>
+    <div class="bi-d"></div>
+    <div class="bi"><div class="bi-n w">5 MIN</div><div class="bi-l">aperçu puis coupure<br>automatique</div></div>
+    <div class="bi-d"></div>
+    <div class="bi"><div class="bi-n go">5</div><div class="bi-l">niveaux de fidélité<br>Membre → Elite</div></div>
+    <div class="bi-d"></div>
+    <div class="bi"><div class="bi-n g">+200</div><div class="bi-l">conversions estimées<br>dans le 1er mois</div></div>
+  </div>
+
+  <footer>
+    <p>Mentalité Focus · Système Complet · Confidentiel · Mars 2026</p>
+    <div class="f-brand">MENTALITÉ FOCUS</div>
+  </footer>
+
+</div>
+</body>
+</html>
