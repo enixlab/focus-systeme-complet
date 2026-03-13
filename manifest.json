@@ -3,15 +3,18 @@
   "short_name": "Focus Card",
   "description": "Ta carte de fidélité Mentalité Focus",
   "start_url": "/card.html",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#A67C00",
-  "orientation": "portrait",
+  "orientation": "portrait-primary",
+  "lang": "fr",
   "icons": [
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%23A67C00'/><polygon points='96,20 172,160 20,160' fill='%23F0D060'/></svg>",
-      "sizes": "192x192",
-      "type": "image/svg+xml"
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
   ]
 }

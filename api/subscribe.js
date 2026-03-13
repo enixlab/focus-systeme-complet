@@ -1,4 +1,3 @@
-// Vercel Serverless Function — stocke les subscriptions push dans GitHub
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const REPO = 'enixlab/focus-systeme-complet';
 const FILE_PATH = 'subscriptions.json';
@@ -24,7 +23,7 @@ async function saveSubscriptions(subs, sha) {
   });
 }
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -33,8 +32,10 @@ export default async function handler(req, res) {
 
   try {
     const subscription = req.body;
+    if (!subscription || !subscription.endpoint) {
+      return res.status(400).json({ error: 'Invalid subscription' });
+    }
     const { subs, sha } = await getSubscriptions();
-    // Éviter les doublons
     const exists = subs.find(s => s.endpoint === subscription.endpoint);
     if (!exists) {
       subs.push({ ...subscription, createdAt: new Date().toISOString() });
@@ -42,6 +43,7 @@ export default async function handler(req, res) {
     }
     return res.status(200).json({ success: true, total: subs.length });
   } catch (err) {
+    console.error(err);
     return res.status(500).json({ error: err.message });
   }
-}
+};
