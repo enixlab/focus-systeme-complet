@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#A67C00">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Focus Card">
+<title>Focus Card</title>
+<link rel="manifest" href="/manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{--gold:#C9A227;--gold2:#A67C00;--gold3:#F0D060;--black:#0a0a0a;--mid:#888;--line:#E8E8E8;--red:#FF3B30;--green:#22c55e;}
+body{font-family:'Inter',sans-serif;background:#f2f2f7;color:#0a0a0a;min-height:100vh;}
+
+/* HEADER APP */
+.app-header{background:#fff;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10;}
+.app-logo{display:flex;align-items:center;gap:8px;}
+.app-logo-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--gold2),var(--gold3));border-radius:8px;display:flex;align-items:center;justify-content:center;}
+.app-logo-icon svg{width:18px;height:18px;fill:#000;}
+.app-name{font-family:'Oswald',sans-serif;font-size:16px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+.app-name span{color:var(--gold);}
+.notif-btn{background:var(--gold);color:#000;border:none;border-radius:20px;padding:7px 14px;font-size:12px;font-weight:700;font-family:'Oswald',sans-serif;letter-spacing:1px;cursor:pointer;text-transform:uppercase;}
+.notif-btn.active{background:var(--green);color:#fff;}
+
+/* PAGE */
+.page{max-width:480px;margin:0 auto;padding:20px 16px 80px;}
+
+/* STATUS LIVE */
+.live-banner{background:var(--red);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#fff;animation:pulse 1s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.live-text{font-size:13px;font-weight:700;color:#fff;}
+.live-banner.offline{background:#e5e5ea;}
+.live-banner.offline .live-dot{background:var(--mid);animation:none;}
+.live-banner.offline .live-text{color:var(--mid);}
+
+/* CARD */
+.card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.08);border:1px solid var(--line);margin-bottom:20px;}
+.card-header{padding:18px 20px 0;display:flex;justify-content:space-between;align-items:flex-start;}
+.card-logo{display:flex;align-items:center;gap:8px;}
+.card-logo-icon{width:28px;height:28px;background:linear-gradient(135deg,var(--gold2),var(--gold3));border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.card-logo-icon svg{width:16px;height:16px;fill:#000;}
+.card-logo-text{font-family:'Oswald',sans-serif;font-size:12px;font-weight:700;color:var(--gold2);letter-spacing:2px;text-transform:uppercase;}
+.card-pts{text-align:right;}
+.card-pts-label{font-size:8px;font-weight:700;color:var(--mid);letter-spacing:1.5px;text-transform:uppercase;}
+.card-pts-val{font-family:'Oswald',sans-serif;font-size:28px;font-weight:900;color:var(--gold2);line-height:1;}
+.card-strip{height:70px;background:linear-gradient(135deg,var(--gold2),var(--gold3),var(--gold2));margin:14px 0 0;position:relative;overflow:hidden;}
+.card-strip::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:shimmer 3s infinite;}
+@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.card-body{padding:16px 20px 18px;}
+.card-name-label{font-size:8px;font-weight:700;color:var(--mid);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:2px;}
+.card-name{font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;}
+.card-fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px;}
+.card-f-label{font-size:7px;font-weight:700;color:var(--mid);letter-spacing:1px;text-transform:uppercase;}
+.card-f-val{font-size:14px;font-weight:700;color:var(--gold2);margin-top:2px;}
+
+/* PROGRESSION */
+.prog-card{background:#fff;border-radius:16px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,.05);border:1px solid var(--line);margin-bottom:20px;}
+.prog-title{font-size:10px;font-weight:700;color:var(--mid);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
+.prog-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+.prog-dot{width:28px;height:28px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#ccc;}
+.prog-dot.filled{background:var(--gold);border-color:var(--gold);color:#000;}
+.prog-dot.done{background:var(--green);border-color:var(--green);color:#fff;}
+.prog-info{font-size:13px;color:var(--mid);}
+.prog-info strong{color:var(--gold2);}
+
+/* TABS NAV */
+.nav-tabs{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding:8px 0 env(safe-area-inset-bottom,8px);}
+.nav-tab{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:9px;font-weight:700;color:#aaa;letter-spacing:.5px;text-transform:uppercase;padding:4px 0;cursor:pointer;text-decoration:none;}
+.nav-tab.active{color:var(--gold2);}
+.nav-tab svg{width:20px;height:20px;}
+.nav-live-dot{width:6px;height:6px;border-radius:50%;background:var(--red);animation:pulse 1s infinite;margin-top:-2px;}
+
+/* INSTALL BANNER */
+.install-banner{background:var(--black);border-radius:14px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;gap:12px;}
+.install-text{font-size:13px;color:#fff;line-height:1.4;}
+.install-text strong{color:var(--gold3);}
+.install-btn{background:var(--gold);color:#000;border:none;border-radius:8px;padding:8px 14px;font-size:11px;font-weight:700;font-family:'Oswald',sans-serif;letter-spacing:1px;cursor:pointer;text-transform:uppercase;white-space:nowrap;}
+
+/* SECTION TITRE */
+.section-title{font-family:'Oswald',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--mid);margin-bottom:10px;}
+</style>
+</head>
+<body>
+
+<div class="app-header">
+  <div class="app-logo">
+    <div class="app-logo-icon"><svg viewBox="0 0 24 24"><polygon points="12,2 22,20 2,20"/></svg></div>
+    <div class="app-name">Mentalité <span>Focus</span></div>
+  </div>
+  <button class="notif-btn" id="notifBtn" onclick="enableNotifications()">🔔 Activer</button>
+</div>
+
+<div class="page">
+
+  <!-- INSTALL BANNER -->
+  <div class="install-banner" id="installBanner" style="display:none;">
+    <div class="install-text"><strong>Installe l'app</strong><br>Ajoute la carte à ton écran d'accueil</div>
+    <button class="install-btn" id="installBtn">Installer</button>
+  </div>
+
+  <!-- LIVE STATUS -->
+  <div class="live-banner offline" id="liveBanner">
+    <div class="live-dot"></div>
+    <div class="live-text" id="liveText">Pas de live en cours</div>
+  </div>
+
+  <!-- CARD -->
+  <div class="section-title">Ma Carte</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-logo">
+        <div class="card-logo-icon"><svg viewBox="0 0 24 24"><polygon points="12,2 22,20 2,20"/></svg></div>
+        <div class="card-logo-text">Mentalité Focus</div>
+      </div>
+      <div class="card-pts">
+        <div class="card-pts-label">Points</div>
+        <div class="card-pts-val" id="cardPts">14</div>
+      </div>
+    </div>
+    <div class="card-strip"></div>
+    <div class="card-body">
+      <div class="card-name-label">Carte de</div>
+      <div class="card-name" id="cardName">MEMBRE</div>
+      <div class="card-fields">
+        <div><div class="card-f-label">Niveau</div><div class="card-f-val" id="cardLevel">ACTIF</div></div>
+        <div><div class="card-f-label">Cycle</div><div class="card-f-val" id="cardCycle">#1</div></div>
+        <div><div class="card-f-label">Progression</div><div class="card-f-val" id="cardProg">4/10</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRESSION -->
+  <div class="section-title">Progression</div>
+  <div class="prog-card">
+    <div class="prog-title">Cycle en cours</div>
+    <div class="prog-bar" id="progBar"></div>
+    <div class="prog-info"><strong id="progText">4/10</strong> points — encore <strong id="progLeft">6 lives</strong> pour le prochain reward</div>
+  </div>
+
+</div>
+
+<!-- NAV BOTTOM -->
+<nav class="nav-tabs">
+  <a class="nav-tab active" href="/card.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+    Carte
+  </a>
+  <a class="nav-tab" href="#live" id="liveTab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3" fill="currentColor" stroke="none"/></svg>
+    Live
+  </a>
+  <a class="nav-tab" href="/index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Accueil
+  </a>
+  <a class="nav-tab" href="#profil">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    Profil
+  </a>
+</nav>
+
+<script>
+const VAPID_PUBLIC = 'BKoCYKDEMoaNxtgFVT6uh7W6ophQ42GgsASsoEW1Lzy6i7PEWoKLpWMJxyHnDuhR2VijltnWWmmZQ-tYaTDgiig';
+
+// Init progression
+function initCard() {
+  const pts = parseInt(localStorage.getItem('fc_pts') || '4');
+  const cycle = parseInt(localStorage.getItem('fc_cycle') || '1');
+  const name = localStorage.getItem('fc_name') || 'MEMBRE';
+  document.getElementById('cardPts').textContent = pts;
+  document.getElementById('cardCycle').textContent = '#' + cycle;
+  document.getElementById('cardName').textContent = name.toUpperCase();
+  document.getElementById('cardProg').textContent = (pts % 10) + '/10';
+  document.getElementById('progText').textContent = (pts % 10) + '/10';
+  document.getElementById('progLeft').textContent = (10 - (pts % 10)) + ' lives';
+
+  const bar = document.getElementById('progBar');
+  bar.innerHTML = '';
+  const filled = pts % 10;
+  for (let i = 1; i <= 10; i++) {
+    const d = document.createElement('div');
+    d.className = 'prog-dot' + (i <= filled ? ' filled' : '') + (i === 10 && filled === 0 && pts > 0 ? ' done' : '');
+    d.textContent = i;
+    bar.appendChild(d);
+  }
+
+  // Niveau selon pts total
+  const levels = ['MEMBRE', 'ACTIF', 'ENGAGÉ', 'PREMIUM', 'ELITE'];
+  const lvl = Math.min(Math.floor(pts / 10), 4);
+  document.getElementById('cardLevel').textContent = levels[lvl];
+}
+
+// Service Worker
+async function registerSW() {
+  if ('serviceWorker' in navigator) {
+    try {
+      await navigator.serviceWorker.register('/sw.js');
+    } catch(e) {}
+  }
+}
+
+// Notifications push
+async function enableNotifications() {
+  const btn = document.getElementById('notifBtn');
+
+  if (!('Notification' in window) || !('serviceWorker' in navigator)) {
+    alert('Les notifications ne sont pas supportées sur ce navigateur.');
+    return;
+  }
+
+  const permission = await Notification.requestPermission();
+  if (permission !== 'granted') {
+    alert('Autorise les notifications pour recevoir les alertes lives.');
+    return;
+  }
+
+  try {
+    const reg = await navigator.serviceWorker.ready;
+    const sub = await reg.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC)
+    });
+    await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(sub)
+    });
+    btn.textContent = '✅ Activé';
+    btn.classList.add('active');
+    localStorage.setItem('fc_notif', '1');
+  } catch(e) {
+    alert('Erreur activation notifications : ' + e.message);
+  }
+}
+
+function urlBase64ToUint8Array(base64String) {
+  const padding = '='.repeat((4 - base64String.length % 4) % 4);
+  const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+  const rawData = window.atob(base64);
+  return Uint8Array.from([...rawData].map(c => c.charCodeAt(0)));
+}
+
+// Install prompt
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  document.getElementById('installBanner').style.display = 'flex';
+  document.getElementById('installBtn').addEventListener('click', async () => {
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') document.getElementById('installBanner').style.display = 'none';
+  });
+});
+
+// Init
+registerSW();
+initCard();
+if (localStorage.getItem('fc_notif') === '1') {
+  document.getElementById('notifBtn').textContent = '✅ Activé';
+  document.getElementById('notifBtn').classList.add('active');
+}
+</script>
+</body>
+</html>
